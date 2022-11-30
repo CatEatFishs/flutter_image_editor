@@ -19,7 +19,7 @@ import 'widget/image_editor_delegate.dart';
 import 'widget/text_editor_page.dart';
 
 const CanvasLauncher _defaultLauncher =
-    CanvasLauncher(mosaicWidth: 5.0, pStrockWidth: 5.0, pColor: Colors.red);
+CanvasLauncher(mosaicWidth: 5.0, pStrockWidth: 5.0, pColor: Colors.red);
 
 ///The editor's result.
 class EditorImageResult {
@@ -42,10 +42,9 @@ class CanvasLauncher {
         mosaicWidth: 5.0, pStrockWidth: 5.0, pColor: Colors.red);
   }
 
-  const CanvasLauncher(
-      {required this.mosaicWidth,
-      required this.pStrockWidth,
-      required this.pColor});
+  const CanvasLauncher({required this.mosaicWidth,
+    required this.pStrockWidth,
+    required this.pColor});
 
   ///mosaic pixel's width
   final double mosaicWidth;
@@ -58,11 +57,10 @@ class CanvasLauncher {
 }
 
 class ImageEditor extends StatefulWidget {
-  const ImageEditor(
-      {Key? key,
-      required this.originImage,
-      this.savePath,
-      this.launcher = _defaultLauncher})
+  const ImageEditor({Key? key,
+    required this.originImage,
+    this.savePath,
+    this.launcher = _defaultLauncher})
       : super(key: key);
 
   ///origin image
@@ -115,15 +113,15 @@ class ImageEditorState extends State<ImageEditor>
       RenderRepaintBoundary boundary = _boundaryKey.currentContext
           ?.findRenderObject() as RenderRepaintBoundary;
       ui.Image image =
-          await boundary.toImage(pixelRatio: ui.window.devicePixelRatio);
+      await boundary.toImage(pixelRatio: ui.window.devicePixelRatio);
       ByteData? byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
+      await image.toByteData(format: ui.ImageByteFormat.png);
       var pngBytes = byteData?.buffer.asUint8List();
 
       final paths = widget.savePath ?? await getTemporaryDirectory();
       final file = await File('${paths.path}/' +
-              md5.convert(utf8.encode(DateTime.now().toString())).toString() +
-              '.jpg')
+          md5.convert(utf8.encode(DateTime.now().toString())).toString() +
+          '.jpg')
           .create();
       file.writeAsBytes(pngBytes ?? []);
       decodeImg().then((value) {
@@ -195,8 +193,7 @@ class ImageEditorState extends State<ImageEditor>
                 }),
             //canvas
             Positioned.fromRect(
-                // rect: Rect.fromLTWH(0, headerHeight, screenWidth, canvasHeight),
-                rect: Rect.fromLTWH(0, 0, screenWidth, screenHeight),
+                rect: Rect.fromLTWH(0, headerHeight, screenWidth, canvasHeight),
                 child: RepaintBoundary(
                   key: _boundaryKey,
                   child: RotatedBox(
@@ -236,7 +233,7 @@ class ImageEditorState extends State<ImageEditor>
                 builder: (ctx, value, child) {
                   return AnimatedPositioned(
                       bottom:
-                          value ? _panelController.trashCanPosition.dy : -100,
+                      value ? _panelController.trashCanPosition.dy : -100,
                       left: _panelController.trashCanPosition.dx,
                       child: _buildTrashCan(),
                       duration: _panelController.panelDuration);
@@ -248,15 +245,28 @@ class ImageEditorState extends State<ImageEditor>
   }
 
   Widget _buildControlBar() {
+    print('bottomBarHeight = $bottomBarHeight');
     return Container(
-      color: Colors.black,
+      // color: Color(0xff232323).withOpacity(0.5),
+      // color: Colors.cyan.withOpacity(0.5),
       width: screenWidth,
-      height: bottomBarHeight,
+      height: 177,
       padding:
-          EdgeInsets.only(left: 16, right: 16, bottom: windowBottomBarHeight),
+      EdgeInsets.only(top:30,left: 16, right: 16, bottom: 15),
+      decoration: BoxDecoration(
+        gradient: new LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xff494949),
+              Color(0xff232323).withOpacity(0.5),
+            ]),
+
+      ),
       child: Column(
         children: [
-          Expanded(
+          Container(
+            height: 40,
             child: ValueListenableBuilder<OperateType>(
               valueListenable: _panelController.operateType,
               builder: (ctx, value, child) {
@@ -269,15 +279,16 @@ class ImageEditorState extends State<ImageEditor>
                     children: [
                       if (value == OperateType.brush)
                         ..._panelController.brushColor
-                            .map<Widget>((e) => CircleColorWidget(
-                                  color: e,
-                                  valueListenable:
-                                      _panelController.colorSelected,
-                                  onColorSelected: (color) {
-                                    if (pColor.value == color.value) return;
-                                    changePainterColor(color);
-                                  },
-                                ))
+                            .map<Widget>((e) =>
+                            CircleColorWidget(
+                              color: e,
+                              valueListenable:
+                              _panelController.colorSelected,
+                              onColorSelected: (color) {
+                                if (pColor.value == color.value) return;
+                                changePainterColor(color);
+                              },
+                            ))
                             .toList(),
                       35.hGap,
                       unDoWidget(onPressed: undo),
@@ -288,7 +299,9 @@ class ImageEditorState extends State<ImageEditor>
               },
             ),
           ),
-          Expanded(
+          SizedBox(height: 15,),
+          Container(
+            height: 40,
             child: Row(
               children: [
                 _buildButton(OperateType.brush, 'Draw', onPressed: () {
@@ -307,7 +320,22 @@ class ImageEditorState extends State<ImageEditor>
                   switchPainterMode(DrawStyle.mosaic);
                 }),
                 const Expanded(child: SizedBox()),
-                doneButtonWidget(onPressed: saveImage),
+                // doneButtonWidget(onPressed: saveImage),
+                GestureDetector(
+                  onTap: saveImage,
+                  behavior: HitTestBehavior.translucent,
+                  child: Container(
+                    width: 56,
+                    height: 30,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      color: Color(0xff07C160),
+                    ),
+                    child: Text('完成',
+                      style: TextStyle(fontSize: 16, color: Colors.white),),
+                  ),
+                )
               ],
             ),
           )
@@ -322,7 +350,8 @@ class ImageEditorState extends State<ImageEditor>
       transform: Matrix4.rotationY(flipValue),
       child: Container(
         alignment: Alignment.center,
-        child: Image.file(widget.originImage),
+        child: Image.file(
+          widget.originImage,),
       ),
     );
   }
@@ -399,7 +428,7 @@ mixin LittleWidgetBinding<T extends StatefulWidget> on State<T> {
   Widget backWidget({VoidCallback? onPressed}) {
     return GestureDetector(
       onTap: onPressed ??
-          () {
+              () {
             Navigator.pop(context);
           },
       child: ImageEditor.uiDelegate.buildBackWidget(),
@@ -516,11 +545,11 @@ mixin TextCanvasBinding<T extends StatefulWidget> on State<T> {
     realState?._panelController.hidePanel();
     Navigator.of(context)
         .push(PageRouteBuilder(
-            opaque: false,
-            pageBuilder: (BuildContext context, Animation<double> animation,
-                Animation<double> secondaryAnimation) {
-              return TextEditorPage();
-            }))
+        opaque: false,
+        pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return TextEditorPage();
+        }))
         .then((value) {
       realState?._panelController.showPanel();
       if (value is FloatTextModel) {
@@ -539,15 +568,16 @@ mixin TextCanvasBinding<T extends StatefulWidget> on State<T> {
       return Stack(
         alignment: Alignment.center,
         children: textModels
-            .map<Widget>((e) => Positioned(
-                  child: _wrapWithGesture(
-                      FloatTextWidget(
-                        textModel: e,
-                      ),
-                      e),
-                  left: e.left,
-                  top: e.top,
-                ))
+            .map<Widget>((e) =>
+            Positioned(
+              child: _wrapWithGesture(
+                  FloatTextWidget(
+                    textModel: e,
+                  ),
+                  e),
+              left: e.left,
+              top: e.top,
+            ))
             .toList(),
       );
     });
@@ -673,9 +703,9 @@ mixin SignatureBinding<T extends StatefulWidget> on State<ImageEditor> {
 
   void initPainter() {
     painterController = SignatureController(
-        penStrokeWidth: pStrockWidth,
-        penColor: pColor,
-        mosaicWidth: mosaicWidth,);
+      penStrokeWidth: pStrockWidth,
+      penColor: pColor,
+      mosaicWidth: mosaicWidth,);
   }
 
   Widget _buildBrushCanvas() {
@@ -688,10 +718,10 @@ mixin SignatureBinding<T extends StatefulWidget> on State<ImageEditor> {
     return StatefulBuilder(builder: (ctx, canvasSetter) {
       this.canvasSetter = canvasSetter;
       return realState?.ignoreWidgetByType(
-              OperateType.brush,
-              Stack(
-                children: pathRecord,
-              )) ??
+          OperateType.brush,
+          Stack(
+            children: pathRecord,
+          )) ??
           const SizedBox();
     });
   }
@@ -705,7 +735,10 @@ mixin SignatureBinding<T extends StatefulWidget> on State<ImageEditor> {
 
 ///information about window
 mixin WindowUiBinding<T extends StatefulWidget> on State<T> {
-  Size get windowSize => MediaQuery.of(context).size;
+  Size get windowSize =>
+      MediaQuery
+          .of(context)
+          .size;
 
   double get windowStatusBarHeight => ui.window.padding.top;
 
@@ -735,11 +768,10 @@ class CircleColorWidget extends StatefulWidget {
 
   final OnColorSelected onColorSelected;
 
-  const CircleColorWidget(
-      {Key? key,
-      required this.color,
-      required this.valueListenable,
-      required this.onColorSelected})
+  const CircleColorWidget({Key? key,
+    required this.color,
+    required this.valueListenable,
+    required this.onColorSelected})
       : super(key: key);
 
   @override
