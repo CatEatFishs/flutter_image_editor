@@ -26,7 +26,7 @@ class DefaultTextConfigModel extends TextConfigModel{
 
 class DefaultImageEditorDelegate extends ImageEditorDelegate{
 
-  Color operatorStatuscolor(bool choosen) => choosen ? Colors.red : Colors.white;
+  Color operatorStatuscolor(bool choosen) => choosen ? Color(0xff07C160) : Colors.white;
 
   @override
   List<Color> get brushColors => const <Color>[

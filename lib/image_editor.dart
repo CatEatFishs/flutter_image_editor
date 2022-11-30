@@ -404,14 +404,14 @@ class ImageEditorState extends State<ImageEditor>
               children: [
                 getOperateTypeRes(type,
                     choosen: _panelController.isCurrentOperateType(type)),
-                Text(
-                  txt,
-                  style: TextStyle(
-                      color: _panelController.isCurrentOperateType(type)
-                          ? const Color(0xFFFA4D32)
-                          : const Color(0xFF999999),
-                      fontSize: 11),
-                )
+                // Text(
+                //   txt,
+                //   style: TextStyle(
+                //       color: _panelController.isCurrentOperateType(type)
+                //           ? const Color(0xFF07C160)
+                //           : const Color(0xFF999999),
+                //       fontSize: 11),
+                // )
               ],
             ),
           );
