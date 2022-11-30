@@ -206,6 +206,11 @@ class ImageEditorState extends State<ImageEditor>
                         _buildImage(),
                         _buildBrushCanvas(),
                         buildTextCanvas(),
+                        Container(
+                          width: 100,
+                          height: 100,
+                          color: Colors.green,
+                        ),
                       ],
                     ),
                   ),
