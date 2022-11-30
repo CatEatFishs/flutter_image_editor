@@ -294,11 +294,11 @@ class ImageEditorState extends State<ImageEditor>
                   switchPainterMode(DrawStyle.normal);
                 }),
                 controlBtnSpacing,
-                _buildButton(OperateType.text, 'Text',
-                    onPressed: toTextEditorPage),
-                controlBtnSpacing,
-                _buildButton(OperateType.flip, 'Flip', onPressed: flipCanvas),
-                controlBtnSpacing,
+                // _buildButton(OperateType.text, 'Text',
+                //     onPressed: toTextEditorPage),
+                // controlBtnSpacing,
+                // _buildButton(OperateType.flip, 'Flip', onPressed: flipCanvas),
+                // controlBtnSpacing,
                 _buildButton(OperateType.rotated, 'Rotate',
                     onPressed: rotateCanvasPlate),
                 controlBtnSpacing,
@@ -602,7 +602,7 @@ mixin SignatureBinding<T extends StatefulWidget> on State<ImageEditor> {
   late StateSetter canvasSetter;
 
   ///mosaic pixel's width
-  double mosaicWidth = 5.0;
+  double mosaicWidth = 15.0;
 
   ///painter stroke width.
   double pStrockWidth = 5;
