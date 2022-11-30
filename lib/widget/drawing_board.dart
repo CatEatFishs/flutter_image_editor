@@ -200,7 +200,7 @@ class SignaturePainter extends CustomPainter {
       final ui.Rect b1 = Rect.fromCenter(center: center.translate(-halfSize, -halfSize),width: size,height: size);
       //0,0
       canvas.drawRect(b1, paint);
-      paint.color = Colors.grey.withOpacity(0.5);
+      paint.color = Colors.grey.withOpacity(1);
       //0,1
       canvas.drawRect(b1.translate(0, size), paint);
       paint.color = Colors.black38;
@@ -215,7 +215,7 @@ class SignaturePainter extends CustomPainter {
       paint.color = Colors.black45;
       //1,2
       canvas.drawRect(b1.translate(size, size*2), paint);
-      paint.color =  Colors.grey.withOpacity(0.5);
+      paint.color =  Colors.grey.withOpacity(1);
       //2,0
       canvas.drawRect(b1.translate(size*2, 0), paint);
       paint.color = Colors.black12;

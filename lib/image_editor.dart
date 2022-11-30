@@ -674,7 +674,7 @@ mixin SignatureBinding<T extends StatefulWidget> on State<ImageEditor> {
     painterController = SignatureController(
         penStrokeWidth: pStrockWidth,
         penColor: pColor,
-        mosaicWidth: mosaicWidth);
+        mosaicWidth: mosaicWidth,);
   }
 
   Widget _buildBrushCanvas() {
