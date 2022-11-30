@@ -195,7 +195,8 @@ class ImageEditorState extends State<ImageEditor>
                 }),
             //canvas
             Positioned.fromRect(
-                rect: Rect.fromLTWH(0, headerHeight, screenWidth, canvasHeight),
+                // rect: Rect.fromLTWH(0, headerHeight, screenWidth, canvasHeight),
+                rect: Rect.fromLTWH(0, 0, screenWidth, screenHeight),
                 child: RepaintBoundary(
                   key: _boundaryKey,
                   child: RotatedBox(
@@ -206,11 +207,6 @@ class ImageEditorState extends State<ImageEditor>
                         _buildImage(),
                         _buildBrushCanvas(),
                         buildTextCanvas(),
-                        Container(
-                          width: 100,
-                          height: 100,
-                          color: Colors.green,
-                        ),
                       ],
                     ),
                   ),
