@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="71a2d032-ac25-41e1-a163-7c117e5cb5e1" name="Default Changelist" comment="修改icon颜色">
+    <list default="true" id="71a2d032-ac25-41e1-a163-7c117e5cb5e1" name="Default Changelist" comment="修改crop">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.packages" beforeDir="false" afterPath="$PROJECT_DIR$/.packages" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/image_editor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/image_editor.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669826380331</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="修改crop">
+      <created>1669862640704</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669862640704</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,6 +113,7 @@
     <MESSAGE value="修改透明度" />
     <MESSAGE value="修改UI" />
     <MESSAGE value="修改icon颜色" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改icon颜色" />
+    <MESSAGE value="修改crop" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改crop" />
   </component>
 </project>
