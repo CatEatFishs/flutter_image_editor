@@ -3,12 +3,10 @@ import 'dart:io';
 import 'dart:math' as math;
 import 'dart:typed_data';
 
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
-import 'package:image_editor_plus/image_editor_plus.dart';
 import 'dart:ui' as ui;
 
 import 'extension/num_extension.dart';
@@ -352,16 +350,16 @@ class ImageEditorState extends State<ImageEditor>
   Widget _cropWidget(){
     return GestureDetector(
       onTap: ()async{
-        Uint8List? img = await Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ImageCropper(
-              image: uint8Date!,
-            ),
-          ),
-        );
-        if (img == null) return;
-        setState(() {});
+        // Uint8List? img = await Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => ImageCropper(
+        //       image: uint8Date!,
+        //     ),
+        //   ),
+        // );
+        // if (img == null) return;
+        // setState(() {});
       },
       child: Container(
         width: 20,
